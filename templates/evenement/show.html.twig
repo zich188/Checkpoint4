@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+
+    <div class="text-center mt-8 mb-8 font-extrabold">
+    {{ evenement.titre }}
+    </div>
+    <div class="flex justify-end mb-4 mr-2">
+        <a href="{{ path('evenement_index') }}">Revenir aux choix d'evènements</a>
+    </div>
+    {% for bar in evenement.bars %}
+    <div class="mb-5">
+        <a href="{{ path('bar_show', {'urlName': bar.urlName}) }}" class="block rounded-lg relative p-5 transform transition-all duration-300 scale-100 hover:scale-95" style="background: url({{ asset('/uploads/' ~ bar.picture) }}) center; background-size: cover;">
+            <div class="h-48"></div>
+            <h2 class="text-blue-100 text-2xl font-bold leading-tight mb-3 pr-5">{{ bar.nom }} XX {{ evenement.titre }}</h2>
+            <div class="flex w-full items-center text-sm text-gray-300 font-medium">
+                <div class="flex-1 flex items-center">
+                </div>
+            </div>
+            <div class="text-blue-100">
+            {{ evenement.date ? evenement.date|date('d-m-Y') : '' }}
+            </div>
+        </a>
+    </div>
+
+
+        <!-- This is an example component -->
+        <div class="container mx-auto my-5">
+
+            <div class="relative rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
+
+                <div class="z-0 order-1 md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg">
+                    <div class="absolute inset-0 w-full h-full object-fill object-center bg-blue-400 bg-opacity-30 bg-cover bg-bottom" style="background-image: url({{ asset('/uploads/' ~ evenement.picture) }}); background-blend-mode: multiply;"></div>
+                    <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
+                        <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2"></h3>
+                        <h4 class="w-full text-xl text-gray-100 leading-tight"></h4>
+                    </div>
+                    <svg class="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-white -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <polygon points="50,0 100,0 50,100 0,100" />
+                    </svg>
+                </div>
+
+                <div class="z-10 order-2 md:order-1 w-full h-full md:w-3/5 bg-white flex items-center -mt-6 md:mt-0">
+                    <div class="p-8 md:pr-18 md:pl-14 md:py-12 mx-2 md:mx-0 h-full bg-white rounded-lg md:rounded-none md:rounded-l-lg shadow-xl md:shadow-none">
+                        <h4 class="hidden md:block text-xl text-gray-400">{{ bar.adresse }} - {{ bar.ville }} - {{ bar.pays }}</h4>
+                        <h3 class="hidden md:block font-bold text-2xl text-gray-700">{{ bar.nom }}</h3>
+                        <br>
+                        <p class="text-gray-600 text-justify">{{ evenement.description }}</p>
+                        <a class="flex items-baseline mt-3 text-blue-600 hover:text-blue-900 focus:text-blue-900" href="{{ path('evenement_participe', {id: evenement.id, participe: 1}) }}">
+                            <span>Participer</span>
+                            <span class="text-xs ml-1">&#x279c;</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+    {% for hotel in evenement.hotels %}
+        <div class="mb-5">
+            <a href="{{ path('hotel_show', {'urlName': hotel.urlName}) }}" class="block rounded-lg relative p-5 transform transition-all duration-300 scale-100 hover:scale-95" style="background: url({{ asset('/uploads/' ~ hotel.picture) }}) center; background-size: cover;">
+                <div class="h-48"></div>
+                <h2 class="text-blue-100 text-2xl font-bold leading-tight mb-3 pr-5">{{ hotel.nom }} XX {{ evenement.titre }}</h2>
+                <div class="flex w-full items-center text-sm text-gray-300 font-medium">
+                    <div class="flex-1 flex items-center">
+                    </div>
+                </div>
+                <div class="text-blue-100">
+                    {{ evenement.date ? evenement.date|date('d-m-Y') : '' }}
+                </div>
+            </a>
+        </div>
+
+    <div class="container mx-auto my-5">
+
+        <div class="relative rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
+
+            <div class="z-0 order-1 md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg">
+                <div class="absolute inset-0 w-full h-full object-fill object-center bg-blue-400 bg-opacity-30 bg-cover bg-bottom" style="background-image: url({{ asset('/uploads/' ~ evenement.picture) }}); background-blend-mode: multiply;"></div>
+                <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
+                    <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2"></h3>
+                    <h4 class="w-full text-xl text-gray-100 leading-tight"></h4>
+                </div>
+                <svg class="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-white -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polygon points="50,0 100,0 50,100 0,100" />
+                </svg>
+            </div>
+
+            <div class="z-10 order-2 md:order-1 w-full h-full md:w-3/5 bg-white flex items-center -mt-6 md:mt-0">
+                <div class="p-8 md:pr-18 md:pl-14 md:py-12 mx-2 md:mx-0 h-full bg-white rounded-lg md:rounded-none md:rounded-l-lg shadow-xl md:shadow-none">
+                    <h4 class="hidden md:block text-xl text-gray-400">{{ hotel.adresse }} - {{ hotel.ville }} - {{ hotel.pays }}</h4>
+                    <h3 class="hidden md:block font-bold  text-2xl text-gray-700">{{ hotel.nom }}</h3>
+                    <br>
+                    <p class="text-gray-600 text-justify">{{ evenement.description }}</p>
+                    <a class="flex items-baseline mt-3 text-blue-600 hover:text-blue-900 focus:text-blue-900" href="{{ path('evenement_participe', {id: evenement.id, participe: 1}) }}">
+                        <span>Participer</span>
+                        <span class="text-xs ml-1">&#x279c;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+<br>
+<br>
+<div class="lg:flex shadow border-gray-400 bg-white -mt-14 ">
+    <div class="w-full  lg:w-11/12 xl:w-full px-1 bg-white py-5 lg:px-2 lg:py-2 tracking-wide dark:bg-gray-800">
+        <div class="flex flex-row lg:justify-start justify-center">
+            <div class="text-gray-700 font-medium text-sm text-center h-36 lg:text-left px-2 dark:text-white">
+                PARTICIPANTS
+                <ul>
+                    <div @click="open = !open" class="relative border-transparent py-3" :class="{'border-indigo-700 transform transition duration-300 ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
+                        <div class="flex justify-center items-center mt-4 mr-12 cursor-pointer">
+                            <div class="flex">
+                                {% for participe in evenement.userevents %}
+                                {% if participe.response is same as 1 %}
+                                <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+                                    <img src="{{ asset("/uploads/" ~ participe.user.picture) }}" alt="" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="flex dark:text-white text-gray-900 text-lg">
+                                {{ participe.user.prenom }}
+                                <div class="cursor-pointer">
+
+                                    {% else %}
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% if is_granted("ROLE_ADMIN") %}
+    <a href="{{ path('evenement_index') }}">back to list</a>
+
+    <a href="{{ path('evenement_edit', {'urlName': evenement.urlName}) }}">edit</a>
+
+    {{ include('evenement/_delete_form.html.twig') }}
+    {% endif %}
+
+{% endblock %}

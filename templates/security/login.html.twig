@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <!-- This is an example component -->
+    <div class="h-screen font-sans login bg-cover">
+        {% for message in app.flashes('success') %}
+            <div role="alert">
+                <div class="bg-green-500 text-center text-white font-bold rounded-t px-4 py-2">
+                    Success
+                </div>
+                <div class="border text-center border-t-0 border-green-400 rounded-b bg-green-100 px-4 py-3 text-green-700">
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+            <div class="w-full max-w-lg">
+                <div class="leading-loose">
+                    <form method="post" class="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl">
+                        {% if error %}
+                            <div class="alert alert-danger text-center font-black text-red-500" > ⚠️ Adresse ou mot de passe incorrect</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        {% if app.user %}
+
+                        {% else %}
+                        <p class="text-white font-medium text-center text-lg font-bold">LOGIN</p>
+                        <div class="">
+                            <label class="block text-sm text-white" for="inputEmail">E-mail</label>
+                            <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" id="inputEmail"
+                                   placeholder="e-mail" value="{{ last_username }}" name="email" aria-label="email" autocomplete="email" required>
+                        </div>
+                        <div class="mt-2">
+                            <label class="block text-sm text-white">Mot de passe</label>
+                            <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+                                   type="password" name="password" id="inputPassword" autocomplete="current-password" placeholder="mot de passe" arial-label="password" required>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+                        <div class="mt-4 items-center flex justify-between">
+                            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
+                                    type="submit">Valider</button>
+                            <a class="inline-block right-0 align-baseline font-bold text-sm text-500 text-white hover:text-red-400"
+                               href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                        </div>
+                    </form>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .login{
+            /*
+              background: url('https://tailwindadmin.netlify.app/dist/images/login-new.jpeg');
+            */
+            background: url('https://www.tremblant.ca/-/media/tremblant/things-to-do/events/beach-party/tremblant-beach-party-l.ashx');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+{% endblock %}

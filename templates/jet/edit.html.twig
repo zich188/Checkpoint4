@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Jet{% endblock %}
+
+{% block body %}
+    <h1>Edit Jet</h1>
+
+    {{ include('jet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('jet_index') }}">back to list</a>
+
+    {{ include('jet/_delete_form.html.twig') }}
+{% endblock %}

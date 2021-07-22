@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+     {{ form_row(form.Nom, {
+         attr: {'class': "w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"},
+         label_attr: {'class': 'mt-4 block text-sm text-white'},
+         label: "Nom"
+     }) }}
+ {{ form_row(form.prenom, {
+     attr: {'class': "w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"},
+     label_attr: {'class': 'mt-4 block text-sm text-white'},
+     label: "Prenom"
+ }) }}
+ {{ form_row(form.email, {
+     attr: {'class': "w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"},
+     label_attr: {'class': 'mt-4 block text-sm text-white'},
+     label: "Adresse mail"
+ }) }}
+{{ form_row(form.Password, {
+    attr: {'class': "w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"},
+    label_attr: {'class': 'mt-4 block text-sm text-white'},
+    label: "Mot de passe"
+}) }}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

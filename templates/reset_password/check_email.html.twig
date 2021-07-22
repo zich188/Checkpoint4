@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+
+    <div class="h-screen font-sans login bg-cover">
+        <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+
+            <div class="bg-blue-100 mb-32 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                <p class="font-bold">Envoyé</p>
+                <p class="text-sm">S'il existe un compte correspondant à votre e-mail, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+                    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                    <br>
+                    Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a class="font-black" href="{{ path('app_forgot_password_request') }}">Renvoyer</a></p>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <style>
+        .login{
+            /*
+              background: url('https://tailwindadmin.netlify.app/dist/images/login-new.jpeg');
+            */
+            background: url('https://www.tremblant.ca/-/media/tremblant/things-to-do/events/beach-party/tremblant-beach-party-l.ashx');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
